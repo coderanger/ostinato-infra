@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: castblock
+  namespace: castblock
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: castblock
+  template:
+    metadata:
+      labels:
+        app: castblock
+    spec:
+      hostNetwork: true
+      containers:
+      - name: castblock
+        image: erdnaxeli/castblock:latest
+        args:
+        - --category=sponsor
+        - --category=selfpromo
+        - --category=interaction
